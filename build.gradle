@@ -1,28 +1,34 @@
 buildscript {
     ext {
         springBootVersion = '3.3.4'
+        //전역 변수 설정.
     }
     repositories {
         mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        //스프링 부트 그레이들 플러그인의 3.4.4를 의존성으로 받겠다.
     }
 }
 
+//앞서 선언한 플러그인 의존성들을 적용할 것 인지를 결정하는 코드
+//아래 4개 플로그인은 자바와 스프링부트를 사용하기위해 필수 플러그 인이기 때문에 항상 추가.
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+apply plugin: 'io.spring.dependency-management' //스프링 부트의 의존성을 관리해주는 플러그인이라 꼭 추가
 
 group 'com.hyk.webservice'
 version '1.0.4-SNAPSHOT-'+new Date().format("yyyyMMddHHmmss")
 sourceCompatibility = 17
 
+//repositories는 각종 의존성(라이브러리)들을 어떤 원격 저장소에서 받을지를 정한다.
 repositories {
     mavenCentral()
 }
 
+//dependecies는 프로젝트 개발에 필요한 의존성들을 선언하는 곳이다. ctrl + space를 활용하면 라이브러리들의 목록을 볼 수 있다.
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.projectlombok:lombok')
